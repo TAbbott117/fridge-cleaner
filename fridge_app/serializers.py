@@ -1,13 +1,9 @@
+# fridge_app/serializers.py
+# Tyler Abbott 4/19/2021
+
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from django.contrib.auth.models import User
-
-# Serializes current user
-class UserSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ['username']
+from .models import Fridge, Ingredient, User
 
 # Serializes new user sign ups that responds with the new user's information including a new token.
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -34,3 +30,22 @@ class UserSerializerWithToken(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['token', 'username', 'password']
+
+# Serializes current user
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['username']
+
+# Serializes Fridge objects
+class FridgeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fridge
+        fields = ["name", "user", "ingredients"]
+
+# Serializes Ingredient objects
+class IngredientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ingredient
+        fields = ["name", "fridge", "date_added", "expiry_date", "used"]
