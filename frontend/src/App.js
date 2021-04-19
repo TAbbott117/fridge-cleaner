@@ -1,83 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-import { getLoggedInUser, login } from './api/UserAPI';
+import { BrowserRouter, Route } from "react-router-dom"
+import { useState } from "react"
+// components
+import Header from "./components/Header"
+import HomePage from "./pages/HomePage"
+import LoginPage from "./pages/LoginPage"
+import LogoutPage from "./pages/LogoutPage"
+import SignUpPage from "./pages/SignUpPage"
+import FridgePage from "./pages/FridgePage"
+import IngredientPage from "./pages/IngredientPage"
+// contexts
+import UserContext from "./contexts/UserContext"
+
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
+  const [userInfo, setUserInfo] = useState(null)
 
-  useEffect(() => {
-    const getUser = async () => {
-      if (localStorage.getItem("auth-user") !== 'null') {
-        let response = await getLoggedInUser(localStorage.getItem("auth-user"));
-        let data = await response.json();
-        if (data.username) {
-          setIsLoggedIn(true);
-          setUser(data);
-        }
-      }
-    }
-    if (!user) {
-      getUser();
-    }
-  }, [user])
-
-
-  const handleLogin = async (evt) => {
-    evt.preventDefault();
-    let userObject = {
-      username: evt.target.username.value,
-      password: evt.target.password.value,
-    }
-    let response = await login(userObject);
-    let data = await response.json();
-    if (data.token) {
-      localStorage.setItem("auth-user", `${data.token}`);
-      setIsLoggedIn(true);
-      setUser(data.user);
-    }
-  }
-
-  const handleLogout = () => {
-    localStorage.setItem("auth-user", null);
-    setIsLoggedIn(false);
-    setUser(null);
-  }
-
-  const renderLoginPage = () => {
-    return (
-      <LoginPage
-        isLoggedIn={isLoggedIn}
-        handleLogin={handleLogin}
-        handleLogout={handleLogout}
-        user={user}
-      />
-    )
-  }
-
-  const renderHomePage = () => {
-    return (
-      <HomePage
-        isLoggedIn={isLoggedIn}
-        user={user}
-        handleLogout={handleLogout}
-      />
-    )
+  function updateUserInfo(newUserInfo) {
+    setUserInfo(newUserInfo)
   }
 
   return (
     <div className="App">
-      <Router>
-        <div>
-          <Route exact path="/" render={renderHomePage} />
-          <Route exact path="/login" render={renderLoginPage} />
-          <Route exact path="/signup" component={SignupPage} />
-        </div>
-      </Router>
+      <BrowserRouter>
+        <UserContext.Provider value={userInfo}>
+          <Header />
+          <main>
+              <Route exact path="/" 
+                render={() => <HomePage />} />
+              <Route exact path="/login" 
+                render={(routerProps) => <LoginPage {...routerProps} handleLogin={updateUserInfo}/>} />
+              <Route exact path="/logout" 
+                render={() => <LogoutPage handleLogout={updateUserInfo}/>} />
+              <Route exact path="/signup" 
+                render={(routerProps) => <SignUpPage {...routerProps} />} />
+              <Route exact path="/fridge/:fridgeId" 
+                render={(routerProps) => <FridgePage {...routerProps}/>} />
+              <Route exact path="/fridge/:fridgeId/ingredient/:ingredientId" 
+                render={(routerProps) => <IngredientPage {...routerProps}/>} />
+          </main>
+        </UserContext.Provider>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,33 +1,41 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom"
+import { useContext } from "react" 
+import UserContext from "../contexts/UserContext"
 
-const HomePage = ({ isLoggedIn, user, handleLogout }) => {
+function HomePage(props) {
+    // contexts
+    const userInfo = useContext(UserContext)
 
-  return (
-    <div>
-      Home Page
-      {
-        user &&
+    // renders
+    function renderContent() {
+        if (!userInfo) {
+            return (
+                <div>
+                    <h2>You are not logged in.</h2>
+                    <Link to="/login"><button>Login</button></Link>
+                    &nbsp;
+                    <Link to="/signup"><button>Register</button></Link>
+                </div>
+            )
+        }
+            
+        let fridgeElements = userInfo.user.fridges.map((fridge, index) => {
+            return <Link key={index} to={`fridge/1`}>{fridge.name}</Link>
+        })
+
+        return (
+            <div>
+                <h2>You are logged in as <span className="user">{userInfo.user.username}</span></h2>
+                { fridgeElements }
+            </div>
+        )
+    }
+    
+    return (
         <div>
-          Hi {user.username}
+            { renderContent() }
         </div>
-      }
-      {
-        !isLoggedIn
-        ?
-        <div>
-          <div>
-            <Link to='/login'>Login</Link>
-          </div>
-          <div>
-            <Link to='/signup'>Signup</Link>
-          </div>
-        </div>
-        :
-        <button onClick={handleLogout}>Logout</button>
-      }
-    </div>
-  );
-};
+    )
+}
 
 export default HomePage;

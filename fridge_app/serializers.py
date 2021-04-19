@@ -31,21 +31,24 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         model = User
         fields = ['token', 'username', 'password']
 
-# Serializes current user
-class UserSerializer(serializers.ModelSerializer):
-
+# Serializes Ingredient objects
+class IngredientSerializer(serializers.ModelSerializer):
+    fridge = serializers.PrimaryKeyRelatedField(queryset=Fridge.objects.all())
     class Meta:
-        model = User
-        fields = ['username']
+        model = Ingredient
+        fields = ['name', 'fridge', 'date_added', 'expiry_date', 'used']
 
 # Serializes Fridge objects
 class FridgeSerializer(serializers.ModelSerializer):
+    ingredients = IngredientSerializer(many=True, required=False)
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     class Meta:
         model = Fridge
-        fields = ["name", "user", "ingredients"]
+        fields = ['name', 'user', 'ingredients']
 
-# Serializes Ingredient objects
-class IngredientSerializer(serializers.ModelSerializer):
+# Serializes current user
+class UserSerializer(serializers.ModelSerializer):
+    fridges = FridgeSerializer(many=True, required=False)
     class Meta:
-        model = Ingredient
-        fields = ["name", "fridge", "date_added", "expiry_date", "used"]
+        model = User
+        fields = ['username', 'fridges']
