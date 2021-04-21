@@ -17,6 +17,12 @@ class IngredientViewSet(viewsets.ModelViewSet):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     
-def recipe_list(request):
-    response=requests.get('http://www.recipepuppy.com/api/?i=apple,cinnamon').json()
+def recipe_list(request, ingredients):
+    split_ingredients = ingredients.split('_')
+    result = ""
+    for ingredient in split_ingredients:
+        result += ingredient + ','
+    result_formatted = result[:-1]
+    print(result_formatted)
+    response=requests.get(f'http://www.recipepuppy.com/api/?i={result_formatted}').json()
     return JsonResponse(response)

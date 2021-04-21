@@ -5,7 +5,7 @@ from .views import UserViewSet, FridgeViewSet, IngredientViewSet, recipe_list
 
 urlpatterns = [
     path("login/", obtain_jwt_token),
-    path("recipetest/", recipe_list, name='recipe_list')
+    path("recipe/<str:ingredients>", recipe_list, name='recipe_list')
 ]
 
 router = DefaultRouter()
