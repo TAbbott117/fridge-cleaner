@@ -1,5 +1,6 @@
-# fridge_app/models.py
-# Tyler Abbott 4/19/2021
+## fridge_app/models.py
+## Tyler Abbott 
+## 4/19/2021
 
 from django.db import models
 from django.contrib.auth.models import User

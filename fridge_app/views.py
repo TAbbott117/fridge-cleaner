@@ -1,9 +1,15 @@
+## fridge_app/views.py
+## Tyler Abbott
+## 4/20/2021
+
 from django.shortcuts import render
 from rest_framework import viewsets
 from .models import User, Fridge, Ingredient
 from .serializers import UserSerializer, FridgeSerializer, IngredientSerializer
 from django.http import JsonResponse
 import requests
+
+# View sets for postgres db
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -17,6 +23,9 @@ class IngredientViewSet(viewsets.ModelViewSet):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     
+# Receives a string with a list of ingredients separated by underscores. Returns a JSON response retrieved
+#   from the RecipePuppy api
+
 def recipe_list(request, ingredients):
     split_ingredients = ingredients.split('_')
     result = ""

@@ -1,5 +1,6 @@
-# fridge_app/serializers.py
-# Tyler Abbott 4/19/2021
+## fridge_app/serializers.py
+## Tyler Abbott 
+## 4/19/2021
 
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
