@@ -8,11 +8,11 @@ function Fridge(props){
   // contexts
   const userInfo = useContext(UserContext)
 
-  // function deleteIngredient(ingredientId){
-  //   let token = userInfo ? userInfo.token : ""
-  //   FridgeAPI.deleteIngredient(ingredientId, token)
-  //       .then(window.location.reload())
-  // }
+  function deleteIngredient(ingredientId){
+    let token = userInfo ? userInfo.token : ""
+    FridgeAPI.deleteIngredient(ingredientId, token)
+        .then(window.location.reload())
+  }
 
   function renderFridge(){
     if(!props.fridge){
@@ -22,12 +22,9 @@ function Fridge(props){
     let fridgeElements = props.fridge.ingredients.map((ingredient, index) => {
       return (
         <div>
-            <p>{ingredient.name}
-                <span>
-                    <button className="btn-small">Update</button>
-                    <button className="btn-small">Delete</button>
-                </span>
-            </p>
+            <h4>{ingredient.name}</h4>
+            <p>Expires {ingredient.expiry_date}</p>  
+            <button className="btn-small" onClick={() => deleteIngredient(ingredient.id)}>Delete</button>
         </div>
       )
     })

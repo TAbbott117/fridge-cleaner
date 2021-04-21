@@ -66,7 +66,7 @@ async function fetchFridge(fridgeId, token) {
 }
 
 async function fetchIngredient(ingredientId, token) {
-  return await tryCatchFetch(BASE_URL + `ingredients/${ingredientId}`, defaultGetInit(token))
+  return await tryCatchFetch(BASE_URL + `ingredients/${ingredientId}/`, defaultGetInit(token))
 }
 
 async function fetchRecipes(ingredients, token){
@@ -85,7 +85,7 @@ async function addIngredient(ingredientObject, token){
 }
 
 async function deleteIngredient(ingredientId, token){
-  return await fetch(BASE_URL + `ingredients/${ingredientId}`, {
+  return await fetch(BASE_URL + `ingredients/${ingredientId}/`, {
     headers: {
       'Content-Type': 'application/JSON',
       "Authorization": `JWT ${token}`

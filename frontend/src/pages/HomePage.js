@@ -30,6 +30,8 @@ function HomePage(props) {
                 <h1>Welcome back to Fridgable!</h1>
                 <h4>Your fridges:</h4>
                 { fridgeElements }
+                <br></br>
+                
             </div>
         )
     }

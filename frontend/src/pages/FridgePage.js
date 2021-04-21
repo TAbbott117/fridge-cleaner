@@ -39,6 +39,7 @@ function FridgePage(props) {
         <div>
             <Fridge fridge={fridge} />
             <div>
+                <h3>Add a new ingredient to your fridge!</h3>
                 <Form onSubmit={addIngredient}>
                     <Form.Group controlId="name">
                     <Form.Label>Ingredient Name</Form.Label>
