@@ -37,7 +37,7 @@ class IngredientSerializer(serializers.ModelSerializer):
     fridge = serializers.PrimaryKeyRelatedField(queryset=Fridge.objects.all())
     class Meta:
         model = Ingredient
-        fields = ['name', 'fridge', 'date_added', 'expiry_date', 'used']
+        fields = ['id', 'name', 'fridge', 'date_added', 'expiry_date', 'used']
 
 # Serializes Fridge objects
 class FridgeSerializer(serializers.ModelSerializer):

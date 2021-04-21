@@ -2,7 +2,8 @@ import { useEffect, useState, useContext } from "react"
 import UserContext from "../contexts/UserContext"
 import Fridge from "../components/Fridge"
 import FridgeAPI from "../api/FridgeAPI"
-import { getUserFridge } from "../api/UserAPI"
+import {Form, Button} from 'react-bootstrap'
+//import { getUserFridge } from "../api/UserAPI"
 
 function FridgePage(props) {
     // states
@@ -22,10 +23,36 @@ function FridgePage(props) {
         setFridge(data)
     }
 
+    async function addIngredient(e){
+        let token = userInfo ? userInfo.token : ""
+        const ingredientObject = {
+            name: e.target.elements[0].value,
+            fridge: props.match.params.fridgeId,
+            expiry_date: e.target.elements[1].value
+          }
+        FridgeAPI.addIngredient(ingredientObject, token)
+            .then(window.location.reload())
+    }
+
     // renders
     return (
         <div>
             <Fridge fridge={fridge} />
+            <div>
+                <Form onSubmit={addIngredient}>
+                    <Form.Group controlId="name">
+                    <Form.Label>Ingredient Name</Form.Label>
+                    <Form.Control/>
+                    </Form.Group>
+
+                    <Form.Group controlId="expiry_date">
+                    <Form.Label>Approximate Expiration Date</Form.Label>
+                    <Form.Control/>
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">Add Ingredient</Button>
+                </Form>
+            </div>
         </div>
     )
 }

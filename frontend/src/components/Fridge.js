@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom"
+import { useContext } from "react"
+import UserContext from "../contexts/UserContext"
+import FridgeAPI from "../api/FridgeAPI"
 
 function Fridge(props){
+
+  // contexts
+  const userInfo = useContext(UserContext)
+
+  // function deleteIngredient(ingredientId){
+  //   let token = userInfo ? userInfo.token : ""
+  //   FridgeAPI.deleteIngredient(ingredientId, token)
+  //       .then(window.location.reload())
+  // }
 
   function renderFridge(){
     if(!props.fridge){
@@ -12,9 +24,6 @@ function Fridge(props){
         <div>
             <p>{ingredient.name}
                 <span>
-                    <Link to={`/fridge/0/ingredient/${ingredient.id}`}>
-                        <button className="btn-small">View</button>
-                    </Link>
                     <button className="btn-small">Update</button>
                     <button className="btn-small">Delete</button>
                 </span>
@@ -27,8 +36,6 @@ function Fridge(props){
       <div>
           <h2>{props.fridge.name}</h2>
           { fridgeElements }
-          <hr />
-          <button>New Ingredient</button>
       </div>
     )
   }

@@ -11,6 +11,8 @@ import FridgePage from "./pages/FridgePage"
 import IngredientPage from "./pages/IngredientPage"
 // contexts
 import UserContext from "./contexts/UserContext"
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 
 function App() {
@@ -18,6 +20,10 @@ function App() {
 
   function updateUserInfo(newUserInfo) {
     setUserInfo(newUserInfo)
+  }
+
+  function handleLogout() {
+    setUserInfo(null)
   }
 
   return (
@@ -31,7 +37,7 @@ function App() {
               <Route exact path="/login" 
                 render={(routerProps) => <LoginPage {...routerProps} handleLogin={updateUserInfo}/>} />
               <Route exact path="/logout" 
-                render={() => <LogoutPage handleLogout={updateUserInfo}/>} />
+                render={() => <LogoutPage handleLogout={handleLogout()}/>} />
               <Route exact path="/signup" 
                 render={(routerProps) => <SignUpPage {...routerProps} />} />
               <Route exact path="/fridge/:fridgeId" 

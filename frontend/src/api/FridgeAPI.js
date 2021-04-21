@@ -69,4 +69,30 @@ async function fetchIngredient(ingredientId, token) {
   return await tryCatchFetch(BASE_URL + `ingredients/${ingredientId}`, defaultGetInit(token))
 }
 
-export default {login, signUp, fetchFridge, fetchIngredient}
+async function fetchRecipes(ingredients, token){
+  return await tryCatchFetch(BASE_URL + `recipe/${ingredients}`, defaultGetInit(token))
+}
+
+async function addIngredient(ingredientObject, token){
+  return await fetch(BASE_URL + 'ingredients/', {
+    headers: {
+      'Content-Type': 'application/JSON',
+      "Authorization": `JWT ${token}`
+    },
+    method: "POST",
+    body: JSON.stringify(ingredientObject)
+  })
+}
+
+async function deleteIngredient(ingredientId, token){
+  return await fetch(BASE_URL + `ingredients/${ingredientId}`, {
+    headers: {
+      'Content-Type': 'application/JSON',
+      "Authorization": `JWT ${token}`
+    },
+    method: "DELETE"
+  })
+}
+
+
+export default {login, signUp, fetchFridge, fetchIngredient, fetchRecipes, addIngredient, deleteIngredient}
