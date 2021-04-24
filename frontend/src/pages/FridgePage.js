@@ -3,11 +3,12 @@ import UserContext from "../contexts/UserContext"
 import Fridge from "../components/Fridge"
 import FridgeAPI from "../api/FridgeAPI"
 import {Form, Button} from 'react-bootstrap'
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 
 function FridgePage(props) {
     // states
     const [fridge, setFridge] = useState(null)
+    const [recipe, setRecipe] = useState(null)
 
     // contexts
     const userInfo = useContext(UserContext)
@@ -24,6 +25,7 @@ function FridgePage(props) {
     }
 
     async function addIngredient(e){
+        e.preventDefault()
         let token = userInfo ? userInfo.token : ""
         const ingredientObject = {
             name: e.target.elements[0].value,
@@ -31,8 +33,23 @@ function FridgePage(props) {
             expiry_date: e.target.elements[1].value
           }
         FridgeAPI.addIngredient(ingredientObject, token)
-            .then(window.location.reload())
+            .then(getFridge(fridge.id))
     }
+
+    async function deleteFridge(){
+        let token = userInfo ? userInfo.token : ""
+        FridgeAPI.deleteFridge(fridge.id, token)
+            .then(<Redirect to="/"/>)
+        // .then(props.history.push("/"))
+    }
+
+    // function handleRecipe(e){
+    //     console.log("IN METHOD")
+    //     let ingredients = e.target.elements[0].value
+    //     ingredients = ingredients.toLowerCase()
+    //     //setRecipe(ingredients)
+    //     return <Redirect to={`recipe/${ingredients}`}/>
+    // }
 
     // renders
     return (
@@ -55,10 +72,9 @@ function FridgePage(props) {
                 </Form>
             </div>
             <br></br>
-            <h4>Make Recipe:</h4>
-                <Link to="recipe/apple_cinnamon"><button>RECIPE TEST</button></Link>
+            <Button variant="primary" onClick={deleteFridge}>Delete Fridge</Button>
         </div>
     )
 }
-
+//<Link to={recipeLink}><Button type="submit">Find Recipes!</Button></Link>
 export default FridgePage;

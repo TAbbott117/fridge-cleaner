@@ -1,10 +1,23 @@
 import { Link } from "react-router-dom"
 import { useContext } from "react" 
 import UserContext from "../contexts/UserContext"
+import FridgeAPI from "../api/FridgeAPI"
+import {Form, Button} from 'react-bootstrap'
 
 function HomePage(props) {
     // contexts
     const userInfo = useContext(UserContext)
+
+    //Functions
+    async function addFridge(e){
+        e.preventDefault()
+        let token = userInfo ? userInfo.token : ""
+        const fridgeObject = {
+            name: e.target.elements[0].value,
+            user: userInfo.user.id
+          }
+        FridgeAPI.addFridge(fridgeObject, token)
+    }
 
     // renders
     function renderContent() {
@@ -21,7 +34,11 @@ function HomePage(props) {
         }
             
         let fridgeElements = userInfo.user.fridges.map((fridge, index) => {
-            return <Link key={index} to={`fridge/1`}>{fridge.name}</Link>
+            return (
+                <div>
+                    <Link key={index} to={`fridge/${fridge.id}`}>{fridge.name}</Link>
+                </div>
+            )
         })
 
         return (
@@ -31,6 +48,15 @@ function HomePage(props) {
                 <h4>Your fridges:</h4>
                 { fridgeElements }
                 <br></br>
+                <h4>Create a new Fridge:</h4>
+                <Form onSubmit={addFridge}>
+                    <Form.Group controlId="name">
+                    <Form.Label>Fridge Name</Form.Label>
+                    <Form.Control/>
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">Add Fridge</Button>
+                </Form>
             </div>
         )
     }

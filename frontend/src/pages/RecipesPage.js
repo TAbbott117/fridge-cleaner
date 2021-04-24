@@ -18,7 +18,6 @@ function RecipesPage(props){
   async function getRecipe(ingredients) {
     let token = userInfo ? userInfo.token : ""
     let data = await FridgeAPI.fetchRecipes(ingredients, token)
-    console.log(data)
     setRecipes(data)
   }
 

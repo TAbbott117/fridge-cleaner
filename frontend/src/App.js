@@ -10,6 +10,7 @@ import SignUpPage from "./pages/SignUpPage"
 import FridgePage from "./pages/FridgePage"
 import IngredientPage from "./pages/IngredientPage"
 import RecipesPage from "./pages/RecipesPage"
+import RecipeSearch from "./pages/RecipeSearch"
 // contexts
 import UserContext from "./contexts/UserContext"
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -26,7 +27,8 @@ function App() {
   function handleLogout() {
     setUserInfo(null)
   }
-
+  document.title = "Fridgable"
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -45,7 +47,8 @@ function App() {
                 render={(routerProps) => <FridgePage {...routerProps}/>} />
               <Route exact path="/fridge/:fridgeId/ingredient/:ingredientId" 
                 render={(routerProps) => <IngredientPage {...routerProps}/>} />
-              <Route exact path="/fridge/recipe/:ingredients" render={(routerProps) => <RecipesPage {...routerProps}/>} />
+              <Route exact path="/recipes" render={(routerProps) => <RecipeSearch {...routerProps}/>} />
+              <Route exact path="/recipes/:ingredients" render={(routerProps) => <RecipesPage {...routerProps}/>} />
           </main>
         </UserContext.Provider>
       </BrowserRouter>

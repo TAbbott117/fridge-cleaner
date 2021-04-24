@@ -11,7 +11,7 @@ function Fridge(props){
   function deleteIngredient(ingredientId){
     let token = userInfo ? userInfo.token : ""
     FridgeAPI.deleteIngredient(ingredientId, token)
-        .then(window.location.reload())
+        //.then(window.location.reload())
   }
 
   function renderFridge(){

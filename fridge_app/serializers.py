@@ -45,11 +45,11 @@ class FridgeSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     class Meta:
         model = Fridge
-        fields = ['name', 'user', 'ingredients']
+        fields = ['id', 'name', 'user', 'ingredients']
 
 # Serializes current user
 class UserSerializer(serializers.ModelSerializer):
     fridges = FridgeSerializer(many=True, required=False)
     class Meta:
         model = User
-        fields = ['username', 'fridges']
+        fields = ['id', 'username', 'fridges']

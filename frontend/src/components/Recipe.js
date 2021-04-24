@@ -16,7 +16,7 @@ function Recipe(props) {
                     <h4>{ recipe.title }</h4>
                     <img src={recipe.thumbnail} />
                     <p>Ingredients needed: {recipe.ingredients}</p>
-                    <a href={recipe.href}>Link to full recipe</a>
+                    <a href={recipe.href}>Link to full {recipe.title} recipe</a>
                 </div>
             )
         })

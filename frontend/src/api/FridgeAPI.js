@@ -94,5 +94,26 @@ async function deleteIngredient(ingredientId, token){
   })
 }
 
+async function addFridge(fridgeObject, token){
+  return await fetch(BASE_URL + "fridges/", {
+    headers: {
+      'Content-Type': 'application/JSON',
+      "Authorization": `JWT ${token}`
+    },
+    method: "POST",
+    body: JSON.stringify(fridgeObject)
+  })
+}
 
-export default {login, signUp, fetchFridge, fetchIngredient, fetchRecipes, addIngredient, deleteIngredient}
+async function deleteFridge(fridgeId, token){
+  return await fetch(BASE_URL + `fridges/${fridgeId}/`, {
+    headers: {
+      'Content-Type': 'application/JSON',
+      "Authorization": `JWT ${token}`
+    },
+    method: "DELETE"
+  })
+}
+
+
+export default {login, signUp, fetchFridge, fetchIngredient, fetchRecipes, addIngredient, deleteIngredient, addFridge, deleteFridge}
