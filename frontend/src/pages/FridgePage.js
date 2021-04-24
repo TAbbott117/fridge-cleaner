@@ -3,7 +3,7 @@ import UserContext from "../contexts/UserContext"
 import Fridge from "../components/Fridge"
 import FridgeAPI from "../api/FridgeAPI"
 import {Form, Button} from 'react-bootstrap'
-//import { getUserFridge } from "../api/UserAPI"
+import { Link } from "react-router-dom"
 
 function FridgePage(props) {
     // states
@@ -54,6 +54,9 @@ function FridgePage(props) {
                     <Button variant="primary" type="submit">Add Ingredient</Button>
                 </Form>
             </div>
+            <br></br>
+            <h4>Make Recipe:</h4>
+                <Link to="recipe/apple_cinnamon"><button>RECIPE TEST</button></Link>
         </div>
     )
 }

@@ -31,7 +31,6 @@ function HomePage(props) {
                 <h4>Your fridges:</h4>
                 { fridgeElements }
                 <br></br>
-                
             </div>
         )
     }

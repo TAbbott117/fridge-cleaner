@@ -9,6 +9,7 @@ import LogoutPage from "./pages/LogoutPage"
 import SignUpPage from "./pages/SignUpPage"
 import FridgePage from "./pages/FridgePage"
 import IngredientPage from "./pages/IngredientPage"
+import RecipesPage from "./pages/RecipesPage"
 // contexts
 import UserContext from "./contexts/UserContext"
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -44,6 +45,7 @@ function App() {
                 render={(routerProps) => <FridgePage {...routerProps}/>} />
               <Route exact path="/fridge/:fridgeId/ingredient/:ingredientId" 
                 render={(routerProps) => <IngredientPage {...routerProps}/>} />
+              <Route exact path="/fridge/recipe/:ingredients" render={(routerProps) => <RecipesPage {...routerProps}/>} />
           </main>
         </UserContext.Provider>
       </BrowserRouter>
