@@ -1,16 +1,18 @@
-import { Link, Redirect } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import {Form, Button} from 'react-bootstrap'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 function RecipeSearch(props){
   const [recipe, setRecipe] = useState(null)
   const [redirect, setRedirect] = useState(false)
 
+  //Takes form data and formats ingredients to be queried in RecipePuppy api call
   const handleRecipe = (e) => {
     e.preventDefault()
     let ingredients = e.target.elements[0].value
-    console.log(ingredients)
-    setRecipe(ingredients)
+    ingredients = ingredients.toLowerCase()
+    let formattedIngredients = ingredients.split(" ").join("_")
+    setRecipe(formattedIngredients)
     setRedirect(true)
 }
 
@@ -23,7 +25,7 @@ function RecipeSearch(props){
           <h2>Fridgable Recipe Search</h2>
           <Form onSubmit={handleRecipe}>
             <Form.Group controlId="ingr">
-              <Form.Label>List Ingredients</Form.Label>
+              <Form.Label>Enter some ingredients to find recipe combinations! (Separate ingredients by spaces)</Form.Label>
               <Form.Control type="ingredient" placeholder="Enter Ingredients"/>
             </Form.Group>
             <Button variant="primary" type="submit">Find Recipes!</Button>
@@ -39,5 +41,4 @@ function RecipeSearch(props){
     </div>
   )
 }
-//<Link to={recipeLink}><Button type="submit">GO!</Button></Link>
 export default RecipeSearch;
