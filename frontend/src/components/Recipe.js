@@ -36,7 +36,7 @@ function Recipe(props) {
                 <br></br>
                 <h5>Not seeing something you like? <Link to="/recipes">Click here to go back and try again with different ingredients!</Link></h5>
                 <br></br>
-                <h5>See a tasty recipe but missing an ingredient or two? Click here to find some grocery stores near you and refill your fridge!</h5>
+                <h5>Looking to wash down your tasty food with a cold brewsky? <Link to="/breweries">Click here to try our Brewery Finder!</Link></h5>
             </Jumbotron>
         )
     }

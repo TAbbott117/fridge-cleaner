@@ -11,6 +11,8 @@ import FridgePage from "./pages/FridgePage"
 import IngredientPage from "./pages/IngredientPage"
 import RecipesPage from "./pages/RecipesPage"
 import RecipeSearch from "./pages/RecipeSearch"
+import BreweryPage from "./pages/BreweryPage"
+import BrewerySearch from "./pages/BrewerySearch"
 // contexts
 import UserContext from "./contexts/UserContext"
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -49,6 +51,8 @@ function App() {
                 render={(routerProps) => <IngredientPage {...routerProps}/>} />
               <Route exact path="/recipes" render={(routerProps) => <RecipeSearch {...routerProps}/>} />
               <Route exact path="/recipes/:ingredients" render={(routerProps) => <RecipesPage {...routerProps}/>} />
+              <Route exact path="/breweries" render={(routerProps) => <BrewerySearch {...routerProps}/>} />
+              <Route exact path="/breweries/:zip" render={(routerProps) => <BreweryPage {...routerProps}/>} />
           </main>
         </UserContext.Provider>
       </BrowserRouter>

@@ -73,6 +73,10 @@ async function fetchRecipes(ingredients, token){
   return await tryCatchFetch(BASE_URL + `recipe/${ingredients}`, defaultGetInit(token))
 }
 
+async function fetchBreweries(zip, token){
+  return await tryCatchFetch(BASE_URL + `beer/${zip}`, defaultGetInit(token))
+}
+
 async function addIngredient(ingredientObject, token){
   return await fetch(BASE_URL + 'ingredients/', {
     headers: {
@@ -116,4 +120,4 @@ async function deleteFridge(fridgeId, token){
 }
 
 
-export default {login, signUp, fetchFridge, fetchIngredient, fetchRecipes, addIngredient, deleteIngredient, addFridge, deleteFridge}
+export default {login, signUp, fetchFridge, fetchIngredient, fetchRecipes, addIngredient, deleteIngredient, addFridge, deleteFridge, fetchBreweries}
