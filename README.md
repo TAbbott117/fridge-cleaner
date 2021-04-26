@@ -6,6 +6,8 @@
 
 #### With Fridgable, this classic first-world problem is solved! Make your account, build your fridge, find your recipes, and put those ingredients into your gut, not into the trash!
 
+#### In addition, if you're anything like me, you need a good craft beer to wash that well-utilized-and-tasty food down. Enter our brewery finder! This feature (powered by the Open Brewery DB) will find craft- and micro-breweries in your area, so jump on and find you a cold one.
+
 #### 3rd party APIs used in this project:
 #### Recipe Puppy (http://www.recipepuppy.com/)
 #### Open Brewery DB (https://www.openbrewerydb.org/)
