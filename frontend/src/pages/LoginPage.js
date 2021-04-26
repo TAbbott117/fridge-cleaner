@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { Jumbotron, Button, Form } from "react-bootstrap"
 import FridgeAPI from "../api/FridgeAPI"
 
 
@@ -22,23 +23,26 @@ function LoginPage(props) {
     }
 
     return (
-        <div>
-            <h2>Account Login</h2>
-            <form onSubmit={handleLogin}>
-                <div className="form">          
-                    <label className="form-label" htmlFor="username">Username: </label>
-                    <input className="form-input" name="username" type="text" placeholder="username"></input>
-                    
-                    <label className="form-label" htmlFor="password">Password: </label>
-                    <input className="form-input" name="password" type="password" placeholder="password"></input>
-                    
-                    <span></span>
-                    <button className="form-button" type="submit">Login</button>
-                </div>
-            </form>
-            <br />
-            <p className="gray">New user? Click <Link to="/signup">here</Link> to register</p>
-        </div>
+        <Jumbotron>
+            <div id="login">
+                <h2>Log in to <b>Fridgeable</b>!</h2>
+                <br></br>
+                <Form onSubmit={handleLogin}>
+                    <Form.Group controlId="username">
+                        <Form.Label>Username:</Form.Label>
+                        <Form.Control placeholder="Enter username"/>
+                    </Form.Group>
+
+                    <Form.Group controlId="password">
+                        <Form.Label>Password:</Form.Label>
+                        <Form.Control type="password" placeholder="Enter Password"/>
+                    </Form.Group>
+                    <Button className="form-button" type="submit" variant="dark">Login</Button>
+                </Form>
+                <br />
+                <p className="gray">New user? <Link to="/signup">Click here to register.</Link></p>
+            </div>
+        </Jumbotron>
     )
 }
 

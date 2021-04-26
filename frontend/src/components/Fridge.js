@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom"
+import { Button, Table } from "react-bootstrap"
 import { useContext } from "react"
+import { Link } from "react-router-dom"
 import UserContext from "../contexts/UserContext"
 import FridgeAPI from "../api/FridgeAPI"
 
@@ -21,18 +22,30 @@ function Fridge(props){
 
     let fridgeElements = props.fridge.ingredients.map((ingredient, index) => {
       return (
-        <div>
-            <h4>{ingredient.name}</h4>
-            <p>Expires {ingredient.expiry_date}</p>  
-            <button className="btn-small" onClick={() => deleteIngredient(ingredient.id)}>Delete</button>
-        </div>
+        <tbody>
+          <td>{ingredient.name}</td>
+          <td>{ingredient.expiry_date}</td>
+          <td><Button className="btn-small" variant="danger" onClick={() => deleteIngredient(ingredient.id)}>Delete</Button></td>
+        </tbody>
       )
     })
   
     return (
       <div>
           <h2>{props.fridge.name}</h2>
-          { fridgeElements }
+          <br></br>
+          <h5>Ready to use some of these ingredients? <Link to="/recipes">Click here to search some recipes!</Link></h5>
+          <br></br>
+          <Table striped bordered hover variant="dark">
+            <thead>
+              <tr>
+                <th>Ingredient</th>
+                <th>Estimated Expiration Date</th>
+                <th>Options</th>
+              </tr>
+            </thead>
+            { fridgeElements }
+          </Table>
       </div>
     )
   }

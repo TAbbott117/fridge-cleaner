@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import FridgeAPI from "../api/FridgeAPI"
+import { Jumbotron, Button, Form, FormControl } from "react-bootstrap"
 
 function SignUpPage(props) {
     async function handleSignUp(e) {
@@ -21,26 +22,30 @@ function SignUpPage(props) {
     }
 
     return (
-        <div>
-            <h2>Register New Account</h2>
-            <form onSubmit={handleSignUp}>
-                <div className="form">          
-                    <label className="form-label" htmlFor="username">Username: </label>
-                    <input className="form-input" name="username" type="text" placeholder="username"></input>
-                    
-                    <label className="form-label" htmlFor="password">Password: </label>
-                    <input className="form-input" name="password" type="password" placeholder="password"></input>
+        <Jumbotron>
+            <div id="register">
+                <h2>Register New Account</h2>
+                <br></br>
+                <Form onSubmit={handleSignUp}>
+                    <Form.Group controlId="username">
+                        <Form.Label>Username:</Form.Label>
+                        <Form.Control placeholder="Enter username"/>
+                    </Form.Group>
 
-                    <label className="form-label" htmlFor="password2">Confirm Password: </label>
-                    <input className="form-input" name="password2" type="password" placeholder="confirm password"></input>
-                    
-                    <span></span>
-                    <button className="form-button" type="submit">Sign Up</button>
-                </div>
-            </form>
-            <br />
-            <p className="gray">Already registered? Click <Link to="/login">here</Link> to login</p>
-        </div>
+                    <Form.Group controlId="password">
+                        <Form.Label>Password:</Form.Label>
+                        <Form.Control type="password" placeholder="Enter Password"/>
+                    </Form.Group>
+                    <Form.Group controlId="password2">
+                        <Form.Label>Confirm Password:</Form.Label>
+                        <Form.Control type="password" placeholder="Enter Password Confirmation"/>
+                    </Form.Group>
+                    <Button className="form-button" type="submit" variant="dark">Create Account</Button>
+                </Form>
+                <br />
+                <p className="gray">Already registered? <Link to="/login">Click here to login.</Link></p>
+            </div>
+        </Jumbotron>
     )
 }
 

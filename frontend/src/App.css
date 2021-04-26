@@ -41,3 +41,53 @@
   padding-right: 3%;
   padding-left: 3%;
 }
+
+#fridgebutton {
+  border-radius: 5px;
+}
+
+#fridgelist {
+  background-color:dodgerblue;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#newfridgeform {
+  padding-right: 30%;
+  padding-left: 30%;
+}
+
+#login {
+  padding-right: 30%;
+  padding-left: 30%;
+}
+
+#register {
+  padding-right: 30%;
+  padding-left: 30%;
+}
+
+#recipesearch {
+  padding-right: 20%;
+  padding-left: 20%;
+}
+
+#recipecarousel {
+  width:500px;
+  height:280px;
+  margin: auto;
+}
+
+.carousel-caption h2 {
+  color: black;
+}
+
+/* Description text */
+.carousel-caption p {
+  color: black;
+}
+
+#addingredient {
+  padding-right: 30%;
+  padding-left: 30%;
+}

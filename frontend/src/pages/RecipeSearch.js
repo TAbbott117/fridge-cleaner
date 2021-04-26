@@ -1,5 +1,5 @@
 import { Redirect } from "react-router-dom"
-import {Form, Button} from 'react-bootstrap'
+import {Jumbotron, Form, Button} from 'react-bootstrap'
 import { useState } from "react"
 
 function RecipeSearch(props){
@@ -21,16 +21,19 @@ function RecipeSearch(props){
   function renderContent(){
     if(!redirect){
       return(
-        <div>
-          <h2>Fridgable Recipe Search</h2>
-          <Form onSubmit={handleRecipe}>
-            <Form.Group controlId="ingr">
-              <Form.Label>Enter some ingredients to find recipe combinations! (Separate ingredients by spaces)</Form.Label>
-              <Form.Control type="ingredient" placeholder="Enter Ingredients"/>
-            </Form.Group>
-            <Button variant="primary" type="submit">Find Recipes!</Button>
-          </Form>
-        </div>
+        <Jumbotron>
+          <div id="recipesearch">
+            <h2><b>Fridgable</b> Recipe Search</h2>
+            <p>(Powered by <a href= "http://www.recipepuppy.com/">RecipePuppy API</a>)</p>
+            <Form onSubmit={handleRecipe}>
+              <Form.Group controlId="ingr">
+                <Form.Label>Enter some ingredients to find recipe combinations! (Separate ingredients by spaces)</Form.Label>
+                <Form.Control type="ingredient" placeholder="Enter Ingredients"/>
+              </Form.Group>
+              <Button variant="dark" type="submit">Find Recipes!</Button>
+            </Form>
+          </div>
+        </Jumbotron>
       )
     }
     return <Redirect to={recipeLink}/>

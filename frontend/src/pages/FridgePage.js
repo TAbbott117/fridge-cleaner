@@ -2,13 +2,12 @@ import { useEffect, useState, useContext } from "react"
 import UserContext from "../contexts/UserContext"
 import Fridge from "../components/Fridge"
 import FridgeAPI from "../api/FridgeAPI"
-import {Form, Button} from 'react-bootstrap'
-import { Link, Redirect } from "react-router-dom"
+import { Jumbotron, Form, Button } from 'react-bootstrap'
+import { Redirect } from "react-router-dom"
 
 function FridgePage(props) {
     // states
     const [fridge, setFridge] = useState(null)
-    const [recipe, setRecipe] = useState(null)
 
     // contexts
     const userInfo = useContext(UserContext)
@@ -40,23 +39,16 @@ function FridgePage(props) {
         let token = userInfo ? userInfo.token : ""
         FridgeAPI.deleteFridge(fridge.id, token)
             .then(<Redirect to="/"/>)
-        // .then(props.history.push("/"))
     }
 
-    // function handleRecipe(e){
-    //     console.log("IN METHOD")
-    //     let ingredients = e.target.elements[0].value
-    //     ingredients = ingredients.toLowerCase()
-    //     //setRecipe(ingredients)
-    //     return <Redirect to={`recipe/${ingredients}`}/>
-    // }
 
     // renders
     return (
-        <div>
+        <Jumbotron>
             <Fridge fridge={fridge} />
-            <div>
+            <div id="addingredient">
                 <h3>Add a new ingredient to your fridge!</h3>
+                <br></br>
                 <Form onSubmit={addIngredient}>
                     <Form.Group controlId="name">
                     <Form.Label>Ingredient Name</Form.Label>
@@ -68,12 +60,12 @@ function FridgePage(props) {
                     <Form.Control/>
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">Add Ingredient</Button>
+                    <Button variant="dark" type="submit">Add Ingredient</Button>
                 </Form>
             </div>
             <br></br>
-            <Button variant="primary" onClick={deleteFridge}>Delete Fridge</Button>
-        </div>
+            <Button variant="danger" onClick={deleteFridge}>Delete Fridge</Button>
+        </Jumbotron>
     )
 }
 //<Link to={recipeLink}><Button type="submit">Find Recipes!</Button></Link>
