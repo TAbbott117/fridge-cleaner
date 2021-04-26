@@ -1,3 +1,7 @@
+// src/pages/FridgePage.js
+// Tyler Abbott
+// 4/26/2021
+
 import { useEffect, useState, useContext } from "react"
 import UserContext from "../contexts/UserContext"
 import Fridge from "../components/Fridge"

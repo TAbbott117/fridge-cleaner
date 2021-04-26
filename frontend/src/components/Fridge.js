@@ -1,3 +1,7 @@
+// src/components/Fridge.js
+// Tyler Abbott
+// 4/26/2021
+
 import { Button, Table } from "react-bootstrap"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
@@ -25,7 +29,7 @@ function Fridge(props){
         <tbody>
           <td>{ingredient.name}</td>
           <td>{ingredient.expiry_date}</td>
-          <td><Button className="btn-small" variant="danger" onClick={() => deleteIngredient(ingredient.id)}>Delete</Button></td>
+          <td><Button className="btn-small" variant="warning" as={Link} to="">Delete</Button><Button className="btn-small" variant="danger" onClick={() => deleteIngredient(ingredient.id)}>Delete</Button></td>
         </tbody>
       )
     })

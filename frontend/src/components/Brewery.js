@@ -1,3 +1,7 @@
+// src/components/Brewery.js
+// Tyler Abbott
+// 4/26/2021
+
 import {Jumbotron, Button} from 'react-bootstrap'
 import { Link } from "react-router-dom"
 

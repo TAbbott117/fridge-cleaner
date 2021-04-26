@@ -1,3 +1,7 @@
+// src/pages/LoginPage.js
+// Tyler Abbott
+// 4/26/2021
+
 import { Link } from "react-router-dom"
 import { Jumbotron, Button, Form } from "react-bootstrap"
 import FridgeAPI from "../api/FridgeAPI"

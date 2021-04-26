@@ -1,3 +1,7 @@
+// src/components/Header.js
+// Tyler Abbott
+// 4/26/2021
+
 import { Link } from "react-router-dom"
 import { Nav, Navbar } from "react-bootstrap"
 import { useContext } from "react" 

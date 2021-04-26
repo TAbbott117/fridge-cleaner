@@ -1,3 +1,7 @@
+// src/pages/HomePage.js
+// Tyler Abbott
+// 4/26/2021
+
 import { Link } from "react-router-dom"
 import { useContext } from "react" 
 import UserContext from "../contexts/UserContext"

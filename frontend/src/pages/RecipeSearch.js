@@ -1,3 +1,7 @@
+// src/pages/RecipeSearch.js
+// Tyler Abbott
+// 4/26/2021
+
 import { Redirect } from "react-router-dom"
 import { Jumbotron, Form, Button } from 'react-bootstrap'
 import { useState } from "react"
