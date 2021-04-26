@@ -5,11 +5,12 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
-from .views import UserViewSet, FridgeViewSet, IngredientViewSet, recipe_list
+from .views import UserViewSet, FridgeViewSet, IngredientViewSet, recipe_list, breweries_list
 
 urlpatterns = [
     path("login/", obtain_jwt_token),
-    path("recipe/<str:ingredients>", recipe_list, name='recipe_list')
+    path("recipe/<str:ingredients>", recipe_list, name='recipe_list'),
+    path("beer/<int:zip>", breweries_list, name='breweries_list')
 ]
 
 router = DefaultRouter()

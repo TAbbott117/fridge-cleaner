@@ -32,6 +32,12 @@ def recipe_list(request, ingredients):
     for ingredient in split_ingredients:
         result += ingredient + ','
     result_formatted = result[:-1]
-    print(result_formatted)
-    response=requests.get(f'http://www.recipepuppy.com/api/?i={result_formatted}').json()
+    response = requests.get(f'http://www.recipepuppy.com/api/?i={result_formatted}').json()
     return JsonResponse(response)
+
+# Receives a zip code. Returns a JSON response retrieved from Open Brewery DB with 
+#   local breweries and bars
+
+def breweries_list(request, zip):
+    response = requests.get(f'https://api.openbrewerydb.org/breweries?by_postal={zip}').json()
+    return JsonResponse(response, safe=False)
