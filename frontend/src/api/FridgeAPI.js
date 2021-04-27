@@ -2,7 +2,7 @@
 // Tyler Abbott
 // 4/19/2021
 
-const BASE_URL = "http://localhost:8000/fridge/"
+const BASE_URL = "https://fridgable-backend.herokuapp.com/fridge/"
 
 function defaultGetInit(token){
   return {

@@ -77,7 +77,7 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=86400),
 }
 
-CORS_ORIGIN_WHITELIST = ['https://localhost:3000','http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['https://localhost:3000','https://fridgable.herokuapp.com']
 
 WSGI_APPLICATION = 'fridge_backend.wsgi.application'
 
