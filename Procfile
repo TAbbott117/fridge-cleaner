@@ -1,0 +1,1 @@
+web: gunicorn fridge_backend.wsgi
